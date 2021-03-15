@@ -9,6 +9,12 @@ const mockUserData = [
     {name:'Jill'}
 ]
 
+const animals = [
+    {name: 'Ciuciek', animal: 'dog'},
+    {name: 'Anielka', animal: 'pchełka'},
+    {name: 'Ula', animal: 'tarantula'}
+]
+
 app.get('/users',function(req,res) {
     res.json({
         success: true,
@@ -26,16 +32,32 @@ app.get('/users/:id',function(req,res) {
     })
 })
 
+app.get('/animals',function(req,res) {
+    res.json({
+        success: true,
+        message: 'got entire ferajna',
+        animals: animals
+    })
+})
+
+app.get('/animals/:id',function(req,res) {
+    res.json({
+        success:true,
+        message: 'got one member of ferajna',
+        animal: req.params.id
+    })
+})
+
 app.post('/login',function(req,res) {
     const username = req.body.username;
-    const password = req.doby.password;
+    const password = req.body.password;
 
     const mockUsername = 'billyTheKid';
     const mockPassword = 'superSecret';
 
     if (username == mockUsername && password == mockPassword) {
         res.json({
-            success: true;
+            success: true,
             message: 'password and username match!',
             token: 'eencrypted token goes here'
         })
